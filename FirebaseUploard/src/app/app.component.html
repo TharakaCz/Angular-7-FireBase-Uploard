@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h3><b>Angular 7</b>and <b>Firebase Storage</b></h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Select a File For Uploard</h5>
+            <input type="file" (change)="upload($event)" />
+            <br><br>
+            <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <br><br>
+              <div  class="btn-group" role="group" *ngIf="uploadState | async ; let state">
+                  <button type="button" class="btn btn-success" (click)="task.pause()" [disabled]="state ==='paused'">Pause</button>&nbsp;
+                  <button type="button" class="btn btn-warning" (click)="task.cancel()" [disabled]="!(state ==='paused || state === running')">Cancel</button>&nbsp;
+                  <button type="button" class="btn btn-danger" (click)="task.resume()" [disabled]="state ==='running'">Resume</button>
+              </div>
+              <br><br>
+              <!-- <div *ngIf="downloadURL | async; let downloardSrc" class="alert alert-info" role="alert">
+                  File Uploaded: <a [href]="downloardSrc">{downloardSrc}</a>
+              </div> -->
+        </div>
+    </div>
+</div>
